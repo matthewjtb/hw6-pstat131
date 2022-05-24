@@ -246,11 +246,15 @@ rand_forest_final <- finalize_workflow(rand_forest_wf, best_params_rand_forest)
 
 rand_forest_final_fit <- fit(rand_forest_final, pokemon_training)
 
-#vip(rand_forest_final_fit)
+rand_forest_final_fit %>%
+  pull_workflow_fit() %>% 
+  vip()
 
 ```
 
 Which variables were most useful? Which were least useful? Are these results what you expected, or not?
+
+_Special attack was the most helpful, with speed, defense, attack, hp, and special defense all being about equal in their usefulness. Legendary and generation were the least useful. These are the results I expected, since the generation and whether or not is is a legendary have nothing to do with type, while Pokemon of certain types may tend to have higher attack, health, or defense stats._
 
 ### Exercise 9
 
